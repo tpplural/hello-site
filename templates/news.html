@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{# Menu item 1 (left Figma frame): intro line + stacked list of post cards. #}
+{% block content %}
+<div class="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8 space-y-6">
+  <div class="text-center text-neutral-300">
+    <h1 class="text-2xl font-bold text-neutral-100">{{ section.title }}</h1>
+    {% if section.description %}<p class="mt-2">{{ section.description }}</p>{% endif %}
+  </div>
+
+  {% for p in paginator.pages %}
+    <a href="{{ p.permalink }}" class="card grid gap-6 md:grid-cols-3 items-center hover:border-primary-700">
+      {{<ui.placeholder label="zdjęcie" class="h-32 w-full" />}}
+      <div class="md:col-span-2">
+        {% if p.date %}<time class="text-sm text-neutral-400" datetime="{{ p.date | date(format='%Y-%m-%d') }}">{{ p.date | date(format='%d.%m.%Y') }}</time>{% endif %}
+        <h2 class="text-xl font-semibold text-neutral-100">{{ p.title }}</h2>
+        <p class="mt-2 text-neutral-400">{{ p.description }}</p>
+      </div>
+    </a>
+  {% endfor %}
+
+  {% include "partials/navigation.html" %}
+</div>
+{% endblock content %}

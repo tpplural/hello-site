@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{# Menu item 4 (bottom Figma frame): write to us, join us, extra info. Target of the home page "Dołącz" button. #}
+{% block content %}
+{% set x = page.extra %}
+<div class="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8 space-y-6">
+  <h1 class="sr-only">{{ page.title }}</h1>
+
+  <section class="card grid gap-6 md:grid-cols-2 items-center">
+    <a class="btn" href="mailto:{{ x.email }}">Napisz do nas</a>
+    <p class="text-neutral-300">albo napisz bezpośrednio na <a href="mailto:{{ x.email }}">{{ x.email }}</a></p>
+  </section>
+
+  <section class="card grid gap-6 md:grid-cols-2 items-center" id="dolacz">
+    <p class="text-neutral-200">Chcesz zostać członkiem stowarzyszenia lub wspierać nasze działania?</p>
+    <a class="btn" href="{{ x.join_url }}">Dołącz</a>
+  </section>
+
+  <section class="card prose">
+    {{ page.content | safe }}
+  </section>
+</div>
+{% endblock content %}

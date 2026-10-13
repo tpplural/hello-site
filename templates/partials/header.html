@@ -1,0 +1,69 @@
+{# Override of themes/zolarwind/templates/partials/header.html:
+   logo + site title on the left, menu items with optional icon above the label,
+   heart marker on the active item (also active on child pages, e.g. a single news post). #}
+{% set current_path = "" %}
+{% if page is defined %}
+  {% set current_path = page.path %}
+{% elif section is defined %}
+  {% set current_path = section.path %}
+{% endif %}
+
+<header class="sticky top-0 w-full z-10">
+  <nav class="bg-neutral-950 shadow-sm shadow-neutral-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        <a href="{{ get_url(path='/') }}" aria-label="{{ res.aria_to_homepage }}" class="flex items-center gap-2 text-neutral-200 hover:text-neutral-50">
+          {% if config.extra.logo_svg %}
+            <img src="{{ get_url(path=config.extra.logo_svg) }}" alt="" class="h-10 w-10">
+          {% endif %}
+          <span class="font-bold uppercase leading-tight text-primary-300">{{ config.extra.title }}</span>
+        </a>
+        <div class="hidden md:flex items-end space-x-2">
+          {% for entry in config.extra.menu_pages | default(value=[]) %}
+            {% set is_active = current_path is starting_with(pat=entry.url) %}
+            <a href="{{ get_url(path=entry.url) }}" title="{{ entry.title }}"
+               {% if is_active %}aria-current="page"{% endif %}
+               class="relative flex flex-col items-center px-3 py-1 rounded-md text-sm font-medium text-neutral-200 hover:text-neutral-50 hover:bg-neutral-800 {% if is_active %}bg-primary-900{% endif %}">
+              {% if is_active %}
+                <svg class="absolute -top-2 left-1/2 -translate-x-1/2 h-4 w-4 text-primary-500" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M12 21s-7.5-4.6-10-9.3C.3 8.3 2.3 4 6.3 4c2.3 0 3.9 1.3 5.7 3.4C13.8 5.3 15.4 4 17.7 4c4 0 6 4.3 4.3 7.7C19.5 16.4 12 21 12 21z"/>
+                </svg>
+              {% endif %}
+              {% if entry.icon %}
+                <img src="{{ get_url(path=entry.icon) }}" alt="" class="h-8 w-8 mb-1">
+              {% endif %}
+              <span>{{ entry.title }}</span>
+            </a>
+          {% endfor %}
+          {% include "partials/toggle-theme.html" %}
+        </div>
+        <div class="-mr-2 flex items-center space-x-1 md:hidden">
+          {% include "partials/toggle-theme.html" %}
+          <button id="toggleMobileMenu" class="icon inline-flex items-center justify-center p-2 rounded-md text-neutral-200 hover:text-neutral-50 hover:bg-neutral-700 focus:outline-none focus:bg-neutral-200 focus:text-neutral-800" aria-label="{{ res.aria_menu }}">
+            <span id="mobile-icon-menu-unselected">
+              <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+            </span>
+            <span id="mobile-icon-menu-selected" class="hidden">
+              <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </span>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div id="mobile-menu" class="hidden md:hidden px-2 pt-2 pb-3 sm:px-3">
+      {% for entry in config.extra.menu_pages | default(value=[]) %}
+        {% set is_active = current_path is starting_with(pat=entry.url) %}
+        <a href="{{ get_url(path=entry.url) }}"
+           {% if is_active %}aria-current="page"{% endif %}
+           class="mt-1 flex items-center gap-3 px-3 py-2 rounded-md font-medium text-neutral-200 hover:text-neutral-50 hover:bg-neutral-800 {% if is_active %}bg-primary-900{% endif %}">
+          {% if entry.icon %}<img src="{{ get_url(path=entry.icon) }}" alt="" class="h-6 w-6">{% endif %}
+          {{ entry.title }}
+        </a>
+      {% endfor %}
+    </div>
+  </nav>
+</header>

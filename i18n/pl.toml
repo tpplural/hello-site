@@ -1,0 +1,69 @@
+# Polish language resources for the zolarwind theme (same keys as themes/zolarwind/i18n/en.toml)
+
+# Global settings
+settings_locale = "pl"
+settings_date_locale = "pl_PL"
+settings_date_format = "%-d %B %Y"
+
+# Simple language resources
+empty_page_title = "Bez tytułu"
+empty_page_description = "Brak opisu"
+read_more = "Czytaj dalej"
+previous_posts = "Nowsze wpisy"
+next_posts = "Starsze wpisy"
+reading_time = "czytania"
+aria_to_homepage = "Przejdź do strony głównej"
+aria_menu = "Menu"
+aria_toggle_theme = "Przełącz tryb jasny/ciemny"
+aria_search = "Szukaj"
+atom_feed_title = "Kanał Atom"
+switch_light = "Przełącz na tryb jasny. Zapamiętane na czas sesji."
+switch_dark = "Przełącz na tryb ciemny. Zapamiętane na czas sesji."
+with_tag = "z tagiem"
+with_series = "w serii"
+not_found_header = "Nie znaleziono strony."
+not_found_text = "Ups! Ta strona gdzieś przepadła. Sprawdź adres albo wróć na stronę główną."
+search_title = "Szukaj"
+search_placeholder = "Szukaj wpisów ..."
+search_input_label = "Szukaj wpisów"
+search_clear_label = "Wyczyść wyszukiwanie"
+search_pagination_label = "Strony wyników"
+search_page_label = "Strona"
+series_nav_title = "Seria"
+clipboard_copy = "Kopiuj do schowka"
+clipboard_copied = "Skopiowano do schowka"
+clipboard_error = "Błąd kopiowania do schowka"
+search_no_results = "Brak wyników"
+search_index_disabled = "Indeks wyszukiwania jest wyłączony. Ustaw build_search_index = true w zola.toml."
+search_error = "Nie udało się wczytać indeksu wyszukiwania."
+search_loading = "Wczytywanie indeksu ..."
+comments_consent_label = "Zgadzam się na wczytanie komentarzy i zapis danych na tym urządzeniu."
+comments_consent_no_js = "Komentarze wymagają JavaScriptu."
+audio_loading = "Wczytywanie ..."
+audio_no_element = "Twoja przeglądarka nie obsługuje elementu audio."
+toc_title = "Spis treści"
+
+# Phrases with singular/plural variants
+search_results_one = "Znaleziono {count} wynik"
+search_results_other = "Znaleziono {count} wyników"
+
+# Nouns with singular and plural (Zola's pluralize only knows one/other)
+[words]
+one = "słowo"
+other = "słów"
+
+[minutes]
+one = "minuta"
+other = "minut"
+
+[posts]
+one = "wpis"
+other = "wpisów"
+
+[tags]
+one = "tag"
+other = "tagi"
+
+[series]
+one = "seria"
+other = "serie"

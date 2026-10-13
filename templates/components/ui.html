@@ -1,0 +1,6 @@
+{# Grey-brown box standing in for a graphic that doesn't exist yet. #}
+{% component ui.placeholder(label="grafika", class="h-48 w-full", round=false) %}
+  <div class="{{ class }} flex items-center justify-center bg-primary-700 text-primary-200 text-sm text-center p-2 {% if round %}rounded-full{% else %}rounded-md{% endif %}" role="img" aria-label="{{ label }}">
+    {{ label }}
+  </div>
+{% endcomponent ui.placeholder %}

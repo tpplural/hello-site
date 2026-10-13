@@ -1,13 +1,61 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Najprostsza strona</title>
-</head>
-<body>
-    <h1>Pozory myla</h1>
-    <p> Tresci beda sie tu pojawiac sukcesywnie</p>
-    <p>a np ten paragraf sprawdza tylko czy webhook zadzialal</p>
-</body>
-</html>
+{% extends "base.html" %}
+
+{# Home page ("STRONA GŁÓWNA" frame). Texts live in content/_index.md. #}
+{% block content %}
+{% set x = section.extra %}
+<div class="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8 space-y-6">
+
+  {# Hero: text + illustration #}
+  <section class="card grid gap-6 md:grid-cols-2 items-center">
+    <div class="space-y-3">
+      <h1 class="text-3xl font-bold text-neutral-100">{{ section.title }}</h1>
+      <p class="text-lg text-neutral-300">{{ x.hero_subtitle }}</p>
+      <p class="text-neutral-400">{{ x.hero_text }}</p>
+    </div>
+    {{<ui.placeholder label="ilustracja: grzyby" class="h-56 w-full" />}}
+  </section>
+
+  {# Intro text (markdown body of _index.md) #}
+  <section class="card prose">
+    {{ section.content | safe }}
+  </section>
+
+  {# Partners / logos #}
+  <section class="card">
+    <h2 class="text-xl font-bold text-neutral-100 mb-4">{{ x.partners_title }}</h2>
+    <div class="flex flex-wrap gap-6 items-center">
+      {% for p in x.partners %}
+        {{<ui.placeholder label={p} class="h-24 w-24" round={true} />}}
+      {% endfor %}
+    </div>
+  </section>
+
+  {# "Poznaj nas" CTA #}
+  <section class="card grid gap-6 md:grid-cols-2 items-center">
+    <div class="flex justify-center">
+      <a class="btn" href="{{ get_url(path='/o-nas/') }}">Poznaj nas</a>
+    </div>
+    {{<ui.placeholder label="tu może być jakieś wspólne zdjęcie z jakiegoś spotkania" class="h-40 w-full" />}}
+  </section>
+
+  {# "Zostań na dłużej": counters + join button #}
+  <section class="card grid gap-6 md:grid-cols-2 items-center">
+    <div class="flex flex-col items-center gap-2">
+      {{<ui.placeholder label="ilustracja: dwa grzybki" class="h-32 w-40" />}}
+      <span class="font-bold text-neutral-200">Zostań na dłużej</span>
+    </div>
+    <div class="space-y-4">
+      <div class="grid grid-cols-3 gap-4 text-center">
+        {% for c in x.counters %}
+          <div>
+            <div class="text-4xl font-bold text-primary-300">{{ c.value }}</div>
+            <div class="text-sm text-neutral-400">{{ c.label }}</div>
+          </div>
+        {% endfor %}
+      </div>
+      <a class="btn w-full" href="{{ get_url(path='/kontakt/') }}#dolacz">Dołącz do nas</a>
+    </div>
+  </section>
+
+</div>
+{% endblock content %}

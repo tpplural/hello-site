@@ -1,0 +1,13 @@
+{
+  "name": "learning-site",
+  "private": true,
+  "scripts": {
+    "css:build": "npx @tailwindcss/cli -i ./css/main.css -o ./static/css/generated.css --minify",
+    "css:watch": "npx @tailwindcss/cli -i ./css/main.css -o ./static/css/generated.css --watch",
+    "server": "zola serve"
+  },
+  "devDependencies": {
+    "@tailwindcss/cli": "4",
+    "tailwindcss": "4"
+  }
+}

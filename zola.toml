@@ -1,16 +1,45 @@
 # The URL the site will be built for
-base_url = "https://example.com"
+base_url = "https://zolaonshrooms.statichost.page"
+
+# The site theme to use (git submodule in themes/zolarwind)
+theme = "zolarwind"
+
+default_language = "pl"
 
 # Whether to automatically compile all Sass files in the sass directory
-compile_sass = true
+compile_sass = false
 
 # Whether to build a search index to be used later on by a JavaScript library
 build_search_index = false
 
+generate_feeds = false
+
 [markdown]
 
+# zolarwind's page template links giallo-light.css / giallo-dark.css, so it needs class-based light+dark themes
 [markdown.highlighting]
-theme = "catppuccin-mocha"
+light_theme = "github-light-default"
+dark_theme = "ayu-dark"
+style = "class"
 
 [extra]
-# Put all your custom variables here
+# Required by zolarwind
+title = "Stowarzyszenie Grzybnia"
+path_language_resources = "i18n/"
+
+favicon_svg = "/img/logo.svg"
+logo_svg = "/img/logo.svg"
+copyright = "© {year} Stowarzyszenie Grzybnia"
+
+# Main navigation. `icon` is optional (rendered above the label by our header override).
+# NOTE: labels are guesses - the Figma board text was not readable.
+menu_pages = [
+    { title = "Aktualności", url = "/aktualnosci/", icon = "/img/nav-1.svg" },
+    { title = "O nas",       url = "/o-nas/",       icon = "/img/nav-2.svg" },
+    { title = "Projekty",    url = "/projekty/",    icon = "/img/nav-3.svg" },
+    { title = "Kontakt",     url = "/kontakt/" },
+]
+
+footer_pages = [
+    { title = "Kontakt", url = "/kontakt/" },
+]
